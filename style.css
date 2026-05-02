@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 :root {
@@ -92,9 +93,8 @@
 
 .header__title {
   color: var(--text-dark);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.1rem;
-  font-family: sans-serif;
   user-select: none;           /* Щоб текст не виділявся випадково при натисканні */
 }
 /* 7. Блок статистики */
@@ -120,14 +120,14 @@
 
 .summary__month {
   font-size: 1.5rem;
-  font-weight: 900;
-  text-transform: none;
+  font-weight: 700;
+  
 }
 
 .summary__day {
   font-size: 0.85rem;
   margin-top: 0.6rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Права частина зі стовпчиками */
@@ -183,4 +183,149 @@
   color: var(--light-pill);      /* Ваш колір E0EDD6 */
   font-size: 1.1rem;
   font-weight: 800;
+}
+/* 8. Нижня навігація */
+/* 8. Нижня навігація */
+.nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 5% 1.5rem 5%; /* Відступ знизу, щоб панель «плавала» */
+    display: flex;
+    justify-content: center;
+}
+
+.nav__panel {
+    width: 100%;
+    max-width: 450px;
+    background-color: var(--main-green); /* Ваш колір 9ccc65 */
+    border-radius: 999px;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Рівномірний розподіл 4 кнопок */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav__btn {
+    width: 3.2rem;
+    height: 3.2rem;
+    background-color: var(--light-pill); /* Світлий колір E0EDD6 */
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+/* ПЕРША КНОПКА (Темно-зелена) */
+.nav__btn--active {
+    background-color: var(--hover-bg); /* Ваш колір 15894C */
+}
+
+/* Іконка на темній кнопці має бути світлою */
+.nav__btn--active .header__icon {
+    background-color: var(--light-pill);
+}
+
+/* ЛОГІКА НАТИСКАННЯ ДЛЯ ВСІХ КНОПОК */
+.nav__btn:active {
+    transform: scale(0.9);
+}
+
+/* Маски для іконок (перейменуйте файли на латиницю) */
+.icon-notes {
+    -webkit-mask: url('зображення/дописи.svg') no-repeat center / 22px;
+    mask: url('зображення/дописи.svg') no-repeat center / 22px;
+}
+
+.icon-plus {
+    -webkit-mask: url('зображення/плюс.svg') no-repeat center / 22px;
+    mask: url('зображення/плюс.svg') no-repeat center / 22px;
+}
+
+.icon-analytics {
+    -webkit-mask: url('зображення/аналітика.svg') no-repeat center / 22px;
+    mask: url('зображення/аналітика.svg') no-repeat center / 22px;
+}
+
+.icon-account {
+    -webkit-mask: url('зображення/аккаунт.svg') no-repeat center / 22px;
+    mask: url('зображення/аккаунт.svg') no-repeat center / 22px;
+}
+.feed {
+    width: 100%;
+    padding: 1rem 5% 6rem 5%; /* 6rem знизу, щоб останній запис не перекривала навагація */
+}
+
+.feed__group {
+    margin-bottom: 2rem;
+}
+
+.feed__date {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+}
+
+.feed__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.feed__left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Фони для іконок різних категорій */
+.feed__icon-bg {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-bg--health { background-color: #C8E6C9; } /* Світло-зелений */
+.icon-bg--fun { background-color: #C8E6C9; }    /* Світло-рожевий */
+.icon-bg--income { background-color: #15894C; } /* Темно-зелений для доходу */
+
+.feed__name {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.feed__amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.expense { color: #D32F2F; } /* Червоний для витрат */
+.income { color: #689F38; }  /* Зелений для доходу */
+
+/* Маски для нових іконок (перейменуйте файли!) */
+.icon-health {
+    -webkit-mask: url('зображення/здоровя.svg') no-repeat center / contain;
+    mask: url('зображення/здоровя.svg') no-repeat center / contain;
+}
+
+.icon-fun {
+    -webkit-mask: url('зображення/розваги.svg') no-repeat center / contain;
+    mask: url('зображення/розваги.svg') no-repeat center / contain;
+}
+
+.icon-income {
+    -webkit-mask: url('зображення/робота.svg') no-repeat center / contain;
+    mask: url('зображення/робота.svg') no-repeat center / contain;
+    background-color: white !important; /* На темному фоні робимо іконку білою */
 }
