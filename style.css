@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --main-green: #9ccc65;       /* Фон великої таблетки */
+  --light-pill: #E0EDD6;       /* Світлий фон кнопок та плашки тексту */
+  --text-dark: #022E3D;        /* Колір тексту Записи */
+  --hover-bg: #15894C;         /* Колір фону при наведенні (15894C) */
+  --hover-icon: #E0EDD6;       /* Колір іконки при наведенні (E0EDD6) */
+  --transition: 0.3s ease;
+}
+
+/* 2. Контейнер для телефону (Header) */
+.header {
+  width: 100%;
+  padding: 1rem 5%;            /* Адаптивні відступи від країв екрана */
+  display: flex;
+  justify-content: center;
+}
+
+.header__panel {
+  width: 100%;
+  max-width: 500px;            /* Обмеження ширини для великих телефонів */
+  background-color: var(--main-green);
+  border-radius: 999px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 3. Стилі кнопок-кіл */
+.header__btn {
+  width: 2.8rem;
+  height: 2.8rem;
+  background-color: var(--light-pill);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* Прибирає синій спалах при натисканні на мобільному */
+}
+
+/* 4. Загальний клас для іконок (через маски) */
+.header__icon {
+  width: 22px;
+  height: 22px;
+  background-color: var(--hover-bg); /* Початковий колір */
+  transition: background-color var(--transition), transform 0.1s;
+  display: block;
+
+
+}
+
+/* Шляхи до SVG файлів */
+.icon-calendar {
+  -webkit-mask: url('зображення/календатик.svg') no-repeat center / contain;
+  mask: url('зображення/календатик.svg') no-repeat center / contain;
+}
+
+.icon-search {
+  -webkit-mask: url('зображення/лупа.svg') no-repeat center / contain;
+  mask: url('зображення/лупа.svg') no-repeat center / contain;
+}
+
+/* 5. Логіка взаємодії (Hover / Active) */
+.header__btn:active {
+  background-color: var(--hover-bg); /* Фон стає 15894C */
+  transform: scale(0.92); /* Кнопка трохи стискається */
+}
+
+.header__btn:active .header__icon {
+  background-color: var(--hover-icon); /* Іконка стає E0EDD6 */
+}
+
+/* 6. Центральна плашка з текстом */
+.header__title-wrapper {
+  background-color: var(--light-pill);
+  padding: 0.4rem 2.5rem;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__title {
+  color: var(--text-dark);
+  font-weight: 800;
+  font-size: 1.1rem;
+  font-family: sans-serif;
+  user-select: none;           /* Щоб текст не виділявся випадково при натисканні */
+}
+/* 7. Блок статистики */
+.summary {
+  width: 100%;
+  padding: 1.5rem 5%;            /* Відступи як у хедері для єдиної лінії */
+  display: flex;
+  justify-content: space-between; /* Розносить дату вліво, а цифри вправо */
+  align-items: flex-start;
+  color: var(--text-dark);       /* Ваш колір 022E3D */
+}
+
+.summary__date {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary__year {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: -4px;
+}
+
+.summary__month {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: none;
+}
+
+.summary__day {
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  font-weight: 600;
+}
+
+/* Права частина зі стовпчиками */
+.summary__stats {
+  display: flex;
+  gap: 1.2rem;                  /* Відстань між колонками */
+  align-items: flex-start;
+}
+
+.summary__item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.3rem;
+}
+
+.summary__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.summary__value {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+/* ІНТЕРАКТИВНА КНОПКА "ДОСТУПНО" */
+.summary__btn-available {
+  background-color: var(--hover-bg); /* Ваш колір 15894C */
+  border: none;
+  border-radius: 10px;
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+/* Анімація при натисканні */
+.summary__btn-available:active {
+  transform: scale(0.93);
+  background-color: var(--main-green); /* Змінюємо на світліший при кліку */
+}
+
+.summary__label-small {
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.summary__value-large {
+  color: var(--light-pill);      /* Ваш колір E0EDD6 */
+  font-size: 1.1rem;
+  font-weight: 800;
+}
