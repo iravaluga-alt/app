@@ -1,0 +1,331 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+  --main-green: #9ccc65;       /* Фон великої таблетки */
+  --light-pill: #E0EDD6;       /* Світлий фон кнопок та плашки тексту */
+  --text-dark: #022E3D;        /* Колір тексту Записи */
+  --hover-bg: #15894C;         /* Колір фону при наведенні (15894C) */
+  --hover-icon: #E0EDD6;       /* Колір іконки при наведенні (E0EDD6) */
+  --transition: 0.3s ease;
+}
+
+/* 2. Контейнер для телефону (Header) */
+.header {
+  width: 100%;
+  padding: 1rem 5%;            /* Адаптивні відступи від країв екрана */
+  display: flex;
+  justify-content: center;
+}
+
+.header__panel {
+  width: 100%;
+  max-width: 500px;            /* Обмеження ширини для великих телефонів */
+  background-color: var(--main-green);
+  border-radius: 999px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 3. Стилі кнопок-кіл */
+.header__btn {
+  width: 2.8rem;
+  height: 2.8rem;
+  background-color: var(--light-pill);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* Прибирає синій спалах при натисканні на мобільному */
+}
+
+/* 4. Загальний клас для іконок (через маски) */
+.header__icon {
+  width: 22px;
+  height: 22px;
+  background-color: var(--hover-bg); /* Початковий колір */
+  transition: background-color var(--transition), transform 0.1s;
+  display: block;
+
+
+}
+
+/* Шляхи до SVG файлів */
+.icon-calendar {
+  -webkit-mask: url('зображення/календатик.svg') no-repeat center / contain;
+  mask: url('зображення/календатик.svg') no-repeat center / contain;
+}
+
+.icon-search {
+  -webkit-mask: url('зображення/лупа.svg') no-repeat center / contain;
+  mask: url('зображення/лупа.svg') no-repeat center / contain;
+}
+
+/* 5. Логіка взаємодії (Hover / Active) */
+.header__btn:active {
+  background-color: var(--hover-bg); /* Фон стає 15894C */
+  transform: scale(0.92); /* Кнопка трохи стискається */
+}
+
+.header__btn:active .header__icon {
+  background-color: var(--hover-icon); /* Іконка стає E0EDD6 */
+}
+
+/* 6. Центральна плашка з текстом */
+.header__title-wrapper {
+  background-color: var(--light-pill);
+  padding: 0.4rem 2.5rem;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__title {
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
+  user-select: none;           /* Щоб текст не виділявся випадково при натисканні */
+}
+/* 7. Блок статистики */
+.summary {
+  width: 100%;
+  padding: 1.5rem 5%;            /* Відступи як у хедері для єдиної лінії */
+  display: flex;
+  justify-content: space-between; /* Розносить дату вліво, а цифри вправо */
+  align-items: flex-start;
+  color: var(--text-dark);       /* Ваш колір 022E3D */
+}
+
+.summary__date {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary__year {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: -4px;
+}
+
+.summary__month {
+  font-size: 1.5rem;
+  font-weight: 700;
+  
+}
+
+.summary__day {
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  font-weight: 700;
+}
+
+/* Права частина зі стовпчиками */
+.summary__stats {
+  display: flex;
+  gap: 1.2rem;                  /* Відстань між колонками */
+  align-items: flex-start;
+}
+
+.summary__item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.3rem;
+}
+
+.summary__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.summary__value {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+/* ІНТЕРАКТИВНА КНОПКА "ДОСТУПНО" */
+.summary__btn-available {
+  background-color: var(--hover-bg); /* Ваш колір 15894C */
+  border: none;
+  border-radius: 10px;
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+/* Анімація при натисканні */
+.summary__btn-available:active {
+  transform: scale(0.93);
+  background-color: var(--main-green); /* Змінюємо на світліший при кліку */
+}
+
+.summary__label-small {
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.summary__value-large {
+  color: var(--light-pill);      /* Ваш колір E0EDD6 */
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+/* 8. Нижня навігація */
+/* 8. Нижня навігація */
+.nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 5% 1.5rem 5%; /* Відступ знизу, щоб панель «плавала» */
+    display: flex;
+    justify-content: center;
+}
+
+.nav__panel {
+    width: 100%;
+    max-width: 450px;
+    background-color: var(--main-green); /* Ваш колір 9ccc65 */
+    border-radius: 999px;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Рівномірний розподіл 4 кнопок */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav__btn {
+    width: 3.2rem;
+    height: 3.2rem;
+    background-color: var(--light-pill); /* Світлий колір E0EDD6 */
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+/* ПЕРША КНОПКА (Темно-зелена) */
+.nav__btn--active {
+    background-color: var(--hover-bg); /* Ваш колір 15894C */
+}
+
+/* Іконка на темній кнопці має бути світлою */
+.nav__btn--active .header__icon {
+    background-color: var(--light-pill);
+}
+
+/* ЛОГІКА НАТИСКАННЯ ДЛЯ ВСІХ КНОПОК */
+.nav__btn:active {
+    transform: scale(0.9);
+}
+
+/* Маски для іконок (перейменуйте файли на латиницю) */
+.icon-notes {
+    -webkit-mask: url('зображення/дописи.svg') no-repeat center / 22px;
+    mask: url('зображення/дописи.svg') no-repeat center / 22px;
+}
+
+.icon-plus {
+    -webkit-mask: url('зображення/плюс.svg') no-repeat center / 22px;
+    mask: url('зображення/плюс.svg') no-repeat center / 22px;
+}
+
+.icon-analytics {
+    -webkit-mask: url('зображення/аналітика.svg') no-repeat center / 22px;
+    mask: url('зображення/аналітика.svg') no-repeat center / 22px;
+}
+
+.icon-account {
+    -webkit-mask: url('зображення/аккаунт.svg') no-repeat center / 22px;
+    mask: url('зображення/аккаунт.svg') no-repeat center / 22px;
+}
+.feed {
+    width: 100%;
+    padding: 1rem 5% 6rem 5%; /* 6rem знизу, щоб останній запис не перекривала навагація */
+}
+
+.feed__group {
+    margin-bottom: 2rem;
+}
+
+.feed__date {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+}
+
+.feed__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.feed__left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Фони для іконок різних категорій */
+.feed__icon-bg {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-bg--health { background-color: #C8E6C9; } /* Світло-зелений */
+.icon-bg--fun { background-color: #C8E6C9; }    /* Світло-рожевий */
+.icon-bg--income { background-color: #15894C; } /* Темно-зелений для доходу */
+
+.feed__name {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.feed__amount {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.expense { color: #D32F2F; } /* Червоний для витрат */
+.income { color: #689F38; }  /* Зелений для доходу */
+
+/* Маски для нових іконок (перейменуйте файли!) */
+.icon-health {
+    -webkit-mask: url('зображення/здоровя.svg') no-repeat center / contain;
+    mask: url('зображення/здоровя.svg') no-repeat center / contain;
+}
+
+.icon-fun {
+    -webkit-mask: url('зображення/розваги.svg') no-repeat center / contain;
+    mask: url('зображення/розваги.svg') no-repeat center / contain;
+}
+
+.icon-income {
+    -webkit-mask: url('зображення/робота.svg') no-repeat center / contain;
+    mask: url('зображення/робота.svg') no-repeat center / contain;
+    background-color: white !important; /* На темному фоні робимо іконку білою */
+}
